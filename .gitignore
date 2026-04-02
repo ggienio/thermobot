@@ -1,0 +1,46 @@
+# Arduino IDE
+*.o
+*.a
+*.so
+build/
+dist/
+*.elf
+*.bin
+*.hex
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Build artifacts
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+
+# Dependencies
+libraries/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# User-specific files
+.idea/
+*.user
+
+# ESP32 specific
+sdkconfig.old
