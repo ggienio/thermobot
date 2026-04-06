@@ -9,9 +9,7 @@ private:
 
 public:
     Motor(int pin_a, int pin_b);
-    void set_speed(int speed);  // 0 to Motors::PWM_RESOLUTION
-    void forward();
-    void backward();
+    void set_speed(int speed);  // [-Motors::PWM_RESOLUTION, Motors::PWM_RESOLUTION]
 };
 
 #endif // MOTOR_H
