@@ -37,10 +37,6 @@ static const char *htmlContent PROGMEM = R"(
 static const size_t htmlContentLength = strlen_P(htmlContent);
 
 void Comms::init() {
-    // if(!SPIFFS.begin()) {
-    //     Serial.println("Error mounting SPIFFS");
-    //     while(1);
-    // }
     wifi_init();
 
     server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {

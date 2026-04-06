@@ -2,7 +2,6 @@
 #define COMMS_H
 
 #include <WiFi.h>
-//#include <SPIFFS.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include "config.h"

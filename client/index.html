@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermobot Control Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #222;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+        .video-stream {
+            background-color: #000;
+            border: 2px solid #444;
+            border-radius: 8px;
+            padding: 10px;
+            min-width: 400px;
+            min-height: 300px;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+        }
+        .arrow-pad {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto;
+            gap: 10px;
+            justify-items: center;
+        }
+        .arrow-pad button {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .arrow-pad .empty {
+            visibility: hidden;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            background-color: #003d82;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="video-stream">
+        </div>
+        <div class="controls">
+            <div class="arrow-pad">
+                <button class="empty"></button>
+                <button class="btn-topleft">↖</button>
+                <button class="btn-forward">↑</button>
+                <button class="btn-topright">↗</button>
+                <button class="empty"></button>
+                
+                <button class="btn-rotateleft">↶</button>
+                <button class="btn-left">←</button>
+                <button class="btn-stop">⏹</button>
+                <button class="btn-right">→</button>
+                <button class="btn-rotateright">↷</button>
+
+                <button class="empty"></button>
+                <button class="btn-bottomleft">↙</button>
+                <button class="btn-backward">↓</button>
+                <button class="btn-bottomright">↘</button>
+                <button class="empty"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // TODO: implement
+        // add event listeners to each buttton, have it send correct json command over websockets
+    </script>
+</body>
+</html>
