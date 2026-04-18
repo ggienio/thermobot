@@ -5,6 +5,7 @@
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 #include "config.h"
+#include "src/comms/command_dispatcher.h"
 
 class Comms {
 private:
@@ -13,13 +14,15 @@ private:
     AsyncWebSocketMessageHandler wsHandler;
     uint32_t lastWS = 0;
     uint32_t deltaWS = 2000;
+    CommandDispatcher &dispatcher;
 
     void wifi_init();
-    static void ws_event_handler(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len);
-    static void handle_ws_data(void *arg, uint8_t *data, size_t len);
+    void ws_event_handler(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len);
+    void handle_ws_data(void *arg, uint8_t *data, size_t len);
 
 public:
-    Comms() : server(80), ws("/ws", wsHandler.eventHandler()) {};
+    Comms(CommandDispatcher &dispatcher):
+        server(80), ws("/ws", wsHandler.eventHandler()), dispatcher(dispatcher) {};
     void init();
     void loop();
 };

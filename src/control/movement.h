@@ -10,12 +10,15 @@ private:
     float omega; // angular velocity [-1, 1]
     
     Motor &m1, &m2, &m3, &m4;
+    unsigned long last_move_time;
+    bool stopped;
 
 public:
     Movement(Motor &m1, Motor &m2, Motor &m3, Motor &m4):
-        vx(0), vy(0), omega(0), m1(m1), m2(m2), m3(m3), m4(m4) {};
+        vx(0), vy(0), omega(0), m1(m1), m2(m2), m3(m3), m4(m4), last_move_time(0), stopped(true) {};
 
     void move(float vx, float vy, float omega);
+    void update();
 };
 
 #endif // MOVEMENT_H

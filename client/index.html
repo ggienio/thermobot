@@ -88,8 +88,56 @@
     </div>
 
     <script>
-        // TODO: implement
-        // add event listeners to each buttton, have it send correct json command over websockets
+        const commands = {
+            'btn-forward': { cmd: 'MOVE', vx: 0, vy: 1, omega: 0 },
+            'btn-backward': { cmd: 'MOVE', vx: 0, vy: -1, omega: 0 },
+            'btn-left': { cmd: 'MOVE', vx: -1, vy: 0, omega: 0 },
+            'btn-right': { cmd: 'MOVE', vx: 1, vy: 0, omega: 0 },
+            'btn-topleft': { cmd: 'MOVE', vx: -1, vy: 1, omega: 0 },
+            'btn-topright': { cmd: 'MOVE', vx: 1, vy: 1, omega: 0 },
+            'btn-bottomleft': { cmd: 'MOVE', vx: -1, vy: -1, omega: 0 },
+            'btn-bottomright': { cmd: 'MOVE', vx: 1, vy: -1, omega: 0 },
+            'btn-rotateleft': { cmd: 'MOVE', vx: 0, vy: 0, omega: -1 },
+            'btn-rotateright': { cmd: 'MOVE', vx: 0, vy: 0, omega: 1 },
+            'btn-stop': { cmd: 'MOVE', vx: 0, vy: 0, omega: 0 }
+        };
+
+        const ws = new WebSocket('ws://192.168.4.1/ws');
+
+        ws.onopen = () => console.log('Connected to server');
+        ws.onerror = (error) => console.error('WebSocket error:', error);
+
+        function sendCommand(command) {
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify(command));
+            }
+        }
+
+        const activeIntervals = new Map();
+
+        document.querySelectorAll('.arrow-pad button:not(.empty)').forEach(button => {
+            const className = button.className;
+            const command = commands[className];
+
+            const stopMove = () => {
+                const intervalId = activeIntervals.get(button);
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    activeIntervals.delete(button);
+                }
+                sendCommand(commands['btn-stop']);
+            };
+
+            button.addEventListener('mousedown', () => {
+                sendCommand(command);
+                if (!activeIntervals.has(button)) {
+                    activeIntervals.set(button, setInterval(() => sendCommand(command), 300));
+                }
+            });
+
+            button.addEventListener('mouseup', stopMove);
+        });
+
     </script>
 </body>
 </html>

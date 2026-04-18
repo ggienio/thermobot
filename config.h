@@ -31,4 +31,8 @@ namespace Motors {
     constexpr int SPEED_CAP = 4095;
 }
 
+namespace MovementConf {
+    constexpr unsigned long TIMEOUT_MS = 500; // timeout after which to shut down the motor if no command received
+}
+
 #endif // CONFIG_H
