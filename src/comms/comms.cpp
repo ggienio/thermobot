@@ -23,8 +23,15 @@ void Comms::loop() {
 }
 
 void Comms::wifi_init() {
+    Serial.println("Starting AP");
+
     WiFi.mode(WIFI_AP);
     WiFi.softAP(WiFiConf::AP_SSID, WiFiConf::AP_PASSWORD);
+
+    while (WiFi.softAPIP() == IPAddress(0, 0, 0, 0)) {
+        delay(100);
+        Serial.print(".");
+    }
 
     Serial.println("AP running");
     Serial.print("My IP address: ");
