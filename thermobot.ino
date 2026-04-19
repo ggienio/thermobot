@@ -17,6 +17,7 @@ static Comms comms(dispatcher);
 
 void setup() {
     Serial.begin(9600);
+    Serial.println("");
     comms.init();
 }
 
