@@ -16,12 +16,12 @@ static CommandDispatcher dispatcher(movement);
 static Comms comms(dispatcher);
 
 void setup() {
-  Serial.begin(9600);
-  comms.init();
+    Serial.begin(9600);
+    comms.init();
 }
 
 void loop() {
-  comms.loop();
-  movement.update();
-  delay(1000);
+    comms.loop();
+    movement.update();
+    delay(1000);
 }
