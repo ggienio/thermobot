@@ -28,7 +28,7 @@ namespace WiFiConf {
 
 namespace Motors {
     constexpr int PWM_RESOLUTION = 12; // 12 bit resolution: 0 - 4095
-    constexpr int SPEED_CAP = 4095;
+    constexpr int SPEED_CAP = 2047; // should not exceed 65% as the motors are rated for 9V, driver 3A continuous
 }
 
 namespace MovementConf {
