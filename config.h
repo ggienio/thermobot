@@ -19,6 +19,26 @@ namespace Pins {
 
     constexpr int MOTOR4_PIN_A = 47;
     constexpr int MOTOR4_PIN_B = 21;
+
+    // Camera
+    constexpr int CAM_PIN_PWDN  = -1;
+    constexpr int CAM_PIN_RESET = -1;
+    constexpr int CAM_PIN_XCLK  = 15;
+    constexpr int CAM_PIN_SIOD  = 4;
+    constexpr int CAM_PIN_SIOC  = 5;
+
+    constexpr int CAM_PIN_Y2 = 11;
+    constexpr int CAM_PIN_Y3 = 9;
+    constexpr int CAM_PIN_Y4 = 8;
+    constexpr int CAM_PIN_Y5 = 10;
+    constexpr int CAM_PIN_Y6 = 12;
+    constexpr int CAM_PIN_Y7 = 18;
+    constexpr int CAM_PIN_Y8 = 17;
+    constexpr int CAM_PIN_Y9 = 16;
+
+    constexpr int CAM_PIN_VSYNC = 6;
+    constexpr int CAM_PIN_HREF  = 7;
+    constexpr int CAM_PIN_PCLK  = 13;
 }
 
 namespace WiFiConf {

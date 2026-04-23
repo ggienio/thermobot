@@ -1,0 +1,680 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #222;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.video-stream {
+    position: relative;
+    background-color: #000;
+    border: 2px solid #444;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 400px;
+    min-height: 300px;
+}
+
+.image-container {
+    background-color: #000;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 4px;
+}
+
+.image-container .close {
+    visibility: collapse;
+    /* position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    transition: background-color 0.2s;
+    z-index: 10; */
+}
+
+.image-container .close:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.image-container .button.save {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 10;
+}
+
+.image-container .button.save:hover {
+    background-color: #0056b3;
+}
+
+.image-container .button.save:active {
+    background-color: #003d82;
+}
+
+#menu .text {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+#menu .text input[type="text"] {
+    flex: 1;
+    min-width: 0;
+}
+
+.image-container.hidden {
+    display: none;
+}
+
+/* Sidebar - Hidden by default, shown as popup */
+#sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    border-left: 2px solid #444;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    z-index: 1000;
+    padding: 0;
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* Toggle checkbox - control sidebar visibility */
+#nav-toggle-cb {
+    display: none;
+}
+
+#nav-toggle-cb:checked ~ #sidebar {
+    right: 0;
+}
+
+/* Hamburger button styling */
+.hamburger-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 101;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s ease;
+}
+
+.hamburger-btn:hover {
+    color: #ccc;
+}
+
+/* Menu styling */
+#menu {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#menu section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#menu .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#menu label {
+    font-size: 13px;
+    color: #aaa;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#menu select,
+#menu input[type="text"],
+#menu input[type="range"] {
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 12px;
+}
+
+#menu select:hover,
+#menu input[type="text"]:hover,
+#menu input[type="range"]:hover {
+    border-color: #666;
+}
+
+#menu select:focus,
+#menu input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: #2a2a2a;
+}
+
+#menu input[type="range"] {
+    cursor: pointer;
+    padding: 0;
+}
+
+/* Range input styling */
+.slider-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+}
+
+.range-min,
+.range-max,
+.range-current {
+    font-size: 11px;
+    color: #777;
+    flex-shrink: 0;
+    min-width: 28px;
+    text-align: center;
+}
+
+.range-current {
+    color: #0090ff;
+    font-weight: 600;
+    min-width: 35px;
+}
+
+.slider-wrapper input[type="range"] {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    cursor: pointer;
+    padding: 0;
+}
+
+#menu .input-group:has(input[type="range"]) {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Toggle switch styling */
+.switch {
+    display: flex;
+    align-items: center;
+}
+
+.switch input {
+    display: none;
+}
+
+.switch .slider {
+    width: 40px;
+    height: 20px;
+    background-color: #444;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.3s;
+}
+
+.switch .slider::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #888;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+}
+
+.switch input:checked + .slider {
+    background-color: #007bff;
+}
+
+.switch input:checked + .slider::after {
+    left: 22px;
+    background-color: #fff;
+}
+
+/* Button styling in menu */
+#menu button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+#menu button:hover {
+    background-color: #0056b3;
+}
+
+#menu button:active {
+    background-color: #003d82;
+}
+
+.inline-button {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    width: fit-content !important;
+}
+
+/* Section styling */
+#menu section hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 10px 0;
+}
+
+.nothidden {
+    display: flex !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Toggle section label */
+.toggle-section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #888;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 6px;
+    user-select: none;
+    background-color: #0d0d0d;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    border-left: 3px solid #444;
+}
+
+.toggle-section-label:hover {
+    color: #aaa;
+    border-left-color: #007bff;
+    background-color: #151515;
+}
+
+/* Arrow indicator for collapsed/expanded state */
+.toggle-section-label::before {
+    content: '▸';
+    display: inline-block;
+    font-size: 10px;
+    transition: transform 0.2s ease;
+    color: #888;
+}
+
+.toggle-section-button:checked + .toggle-section-label::before {
+    transform: rotate(90deg);
+}
+
+.toggle-section-button {
+    display: none;
+}
+
+.toggle-section {
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #0d0d0d;
+    border-radius: 4px;
+    margin-top: 0;
+    padding: 0 10px;
+    transition: max-height 0.3s ease, margin-top 0.3s ease, padding 0.3s ease;
+}
+
+.toggle-section-button:checked ~ .toggle-section {
+    max-height: 2000px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+#buttons {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+#buttons button {
+    width: 100%;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.arrow-pad {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
+    justify-items: center;
+}
+
+.arrow-pad button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.arrow-pad .empty {
+    visibility: hidden;
+}
+
+.arrow-pad button:hover {
+    background-color: #0056b3;
+}
+
+.arrow-pad button:active {
+    background-color: #003d82;
+}
+
+/* ============== RESPONSIVE DESIGN ============== */
+
+/* Tablet and smaller screens */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .video-stream {
+        min-width: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .arrow-pad button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    #sidebar {
+        width: 320px;
+        right: -320px;
+    }
+}
+
+/* Mobile phones - vertical layout */
+@media (max-width: 768px) {
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    .container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        align-items: stretch;
+    }
+
+    .video-stream {
+        min-width: auto;
+        min-height: 250px;
+        width: 100%;
+        padding: 8px;
+        border-radius: 6px;
+    }
+
+    .image-container {
+        min-height: 250px;
+    }
+
+    .hamburger-btn {
+        top: 12px;
+        right: 12px;
+        font-size: 20px;
+    }
+
+    #sidebar {
+        width: 100%;
+        right: -100%;
+        height: 100vh;
+        border-radius: 0;
+        border-left: none;
+        border-top: 2px solid #444;
+    }
+
+    #nav-toggle-cb:checked ~ #sidebar {
+        right: 0;
+    }
+
+    #menu {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    #menu label {
+        font-size: 12px;
+    }
+
+    #menu select,
+    #menu input[type="text"] {
+        padding: 8px 6px;
+        font-size: 14px;
+    }
+
+    #menu input[type="range"] {
+        padding: 2px 0;
+    }
+
+    .arrow-pad {
+        grid-template-columns: auto auto auto auto auto;
+        gap: 8px;
+    }
+
+    .arrow-pad button {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+    }
+
+    .controls {
+        gap: 15px;
+    }
+
+    .toggle-section-label {
+        padding: 12px 8px;
+        font-size: 13px;
+        gap: 10px;
+    }
+
+    .toggle-section {
+        padding: 12px;
+    }
+
+    #buttons button {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .inline-button {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+    }
+
+    .range-min,
+    .range-max {
+        font-size: 10px;
+    }
+
+    .image-container .close {
+        width: 36px;
+        height: 36px;
+        font-size: 28px;
+    }
+
+    .image-container .button.save {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+}
+
+/* Small phones - landscape */
+@media (max-width: 480px) {
+    .video-stream {
+        min-height: 200px;
+        padding: 6px;
+    }
+
+    .image-container {
+        min-height: 200px;
+    }
+
+    .arrow-pad {
+        gap: 6px;
+    }
+
+    .arrow-pad button {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    #menu {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    #menu label {
+        font-size: 11px;
+    }
+
+    #menu select,
+    #menu input[type="text"] {
+        padding: 6px 4px;
+        font-size: 13px;
+    }
+
+    .toggle-section-label {
+        padding: 10px 6px;
+        font-size: 11px;
+    }
+
+    .toggle-section {
+        padding: 10px;
+    }
+
+    #buttons {
+        gap: 8px;
+    }
+
+    #buttons button {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .inline-button {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
+
+    .range-min,
+    .range-max {
+        font-size: 9px;
+    }
+}
+
+/* Landscape orientation on small devices */
+@media (max-height: 600px) {
+    #sidebar {
+        max-height: calc(100vh - 150px);
+    }
+
+    .video-stream {
+        min-height: 180px;
+    }
+
+    .image-container {
+        min-height: 180px;
+    }
+}
