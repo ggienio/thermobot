@@ -372,17 +372,18 @@
     </div>
 
     <script>
+        const speed = 1;
         const commands = {
-            'btn-forward': { cmd: 'MOVE', vx: 0, vy: 1, omega: 0 },
-            'btn-backward': { cmd: 'MOVE', vx: 0, vy: -1, omega: 0 },
-            'btn-left': { cmd: 'MOVE', vx: -1, vy: 0, omega: 0 },
-            'btn-right': { cmd: 'MOVE', vx: 1, vy: 0, omega: 0 },
-            'btn-topleft': { cmd: 'MOVE', vx: -1, vy: 1, omega: 0 },
-            'btn-topright': { cmd: 'MOVE', vx: 1, vy: 1, omega: 0 },
-            'btn-bottomleft': { cmd: 'MOVE', vx: -1, vy: -1, omega: 0 },
-            'btn-bottomright': { cmd: 'MOVE', vx: 1, vy: -1, omega: 0 },
-            'btn-rotateleft': { cmd: 'MOVE', vx: 0, vy: 0, omega: -1 },
-            'btn-rotateright': { cmd: 'MOVE', vx: 0, vy: 0, omega: 1 },
+            'btn-forward': { cmd: 'MOVE', vx: 0, vy: speed, omega: 0 },
+            'btn-backward': { cmd: 'MOVE', vx: 0, vy: -speed, omega: 0 },
+            'btn-left': { cmd: 'MOVE', vx: -speed, vy: 0, omega: 0 },
+            'btn-right': { cmd: 'MOVE', vx: speed, vy: 0, omega: 0 },
+            'btn-topleft': { cmd: 'MOVE', vx: -speed, vy: speed, omega: 0 },
+            'btn-topright': { cmd: 'MOVE', vx: speed, vy: speed, omega: 0 },
+            'btn-bottomleft': { cmd: 'MOVE', vx: -speed, vy: -speed, omega: 0 },
+            'btn-bottomright': { cmd: 'MOVE', vx: speed, vy: -speed, omega: 0 },
+            'btn-rotateleft': { cmd: 'MOVE', vx: 0, vy: 0, omega: -speed },
+            'btn-rotateright': { cmd: 'MOVE', vx: 0, vy: 0, omega: speed },
             'btn-stop': { cmd: 'MOVE', vx: 0, vy: 0, omega: 0 }
         };
 
