@@ -299,13 +299,15 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     const stopStream = () => {
         window.stop();
-        streamButton.innerHTML = 'Start Stream'
+        streamButton.innerHTML = 'Start stream'
+        streamButton.classList.remove('active')
     }
 
     const startStream = () => {
         view.src = `${streamUrl}/stream`
         show(viewContainer)
-        streamButton.innerHTML = 'Stop Stream'
+        streamButton.innerHTML = 'Stop stream'
+        streamButton.classList.add('active')
     }
 
     // Attach actions to buttons
@@ -321,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     }
 
     streamButton.onclick = () => {
-        const streamEnabled = streamButton.innerHTML === 'Stop Stream'
+        const streamEnabled = streamButton.innerHTML === 'Stop stream'
         if (streamEnabled) {
             stopStream()
         } else {

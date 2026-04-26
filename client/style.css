@@ -1,3 +1,21 @@
+/* ============== CSS VARIABLES & COLOR SCHEME ============== */
+:root {
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --primary-active: #003d82;
+    --text-primary: #fff;
+    --bg-dark: #222;
+    --bg-darker: #1a1a1a;
+    --bg-section: #0d0d0d;
+    --border-color: #444;
+    --border-light: #666;
+    --text-secondary: #aaa;
+    --text-tertiary: #888;
+    --text-muted: #777;
+    --border-radius: 4px;
+    --transition-speed: 0.2s;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -9,7 +27,60 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #222;
+    background-color: var(--bg-dark);
+}
+
+/* ============== BASE BUTTON STYLES ============== */
+button {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease;
+    padding: 8px 12px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+button:active {
+    background-color: var(--primary-active);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Active/toggled button state */
+button.active {
+    box-shadow: inset 0 0 0 3px rgba(255, 0, 0, 0.553);
+}
+
+#stream-control a {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color var(--transition-speed) ease;
+    padding: 8px 12px;
+}
+
+#stream-control a:hover {
+    background-color: var(--primary-hover);
+}
+
+#stream-control a:active {
+    background-color: var(--primary-active);
 }
 
 .container {
@@ -21,7 +92,7 @@ body {
 .video-stream {
     position: relative;
     background-color: #000;
-    border: 2px solid #444;
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     padding: 10px;
     min-width: 400px;
@@ -46,49 +117,10 @@ body {
 
 .image-container .close {
     visibility: collapse;
-    /* position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 30px;
-    height: 30px;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 24px;
-    line-height: 1;
-    transition: background-color 0.2s;
-    z-index: 10; */
 }
 
 .image-container .close:hover {
     background-color: rgba(0, 0, 0, 0.9);
-}
-
-.image-container .button.save {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #007bff;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 12px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    z-index: 10;
-}
-
-.image-container .button.save:hover {
-    background-color: #0056b3;
-}
-
-.image-container .button.save:active {
-    background-color: #003d82;
 }
 
 #menu .text {
@@ -113,8 +145,8 @@ body {
     right: -400px;
     width: 380px;
     height: 100vh;
-    background-color: #1a1a1a;
-    border-left: 2px solid #444;
+    background-color: var(--bg-darker);
+    border-left: 2px solid var(--border-color);
     transition: right 0.3s ease;
     overflow-y: auto;
     z-index: 1000;
@@ -130,12 +162,12 @@ body {
 }
 
 #sidebar::-webkit-scrollbar-thumb {
-    background: #444;
+    background: var(--border-color);
     border-radius: 4px;
 }
 
 #sidebar::-webkit-scrollbar-thumb:hover {
-    background: #666;
+    background: var(--border-light);
 }
 
 /* Toggle checkbox - control sidebar visibility */
@@ -143,7 +175,7 @@ body {
     display: none;
 }
 
-#nav-toggle-cb:checked ~ #sidebar {
+body:has(#nav-toggle-cb:checked) #sidebar {
     right: 0;
 }
 
@@ -156,14 +188,29 @@ body {
     background: none;
     border: none;
     font-size: 24px;
-    color: #888;
+    color: var(--text-tertiary);
     cursor: pointer;
     padding: 5px;
-    transition: color 0.2s ease;
+    transition: color var(--transition-speed) ease;
 }
 
 .hamburger-btn:hover {
-    color: #ccc;
+    color: var(--text-secondary);
+}
+
+/* Sidebar close button styling */
+.sidebar-close {
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    padding: 20px;
+    transition: color var(--transition-speed) ease;
+}
+
+.sidebar-close:hover {
+    color: var(--text-secondary);
 }
 
 /* Menu styling */
@@ -188,7 +235,7 @@ body {
 
 #menu label {
     font-size: 13px;
-    color: #aaa;
+    color: var(--text-secondary);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -197,10 +244,10 @@ body {
 #menu select,
 #menu input[type="text"],
 #menu input[type="range"] {
-    background-color: #222;
-    color: #fff;
-    border: 1px solid #444;
-    border-radius: 4px;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
     padding: 6px 8px;
     font-size: 12px;
 }
@@ -208,13 +255,13 @@ body {
 #menu select:hover,
 #menu input[type="text"]:hover,
 #menu input[type="range"]:hover {
-    border-color: #666;
+    border-color: var(--border-light);
 }
 
 #menu select:focus,
 #menu input[type="text"]:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: var(--primary-color);
     background-color: #2a2a2a;
 }
 
@@ -235,14 +282,14 @@ body {
 .range-max,
 .range-current {
     font-size: 11px;
-    color: #777;
+    color: var(--text-muted);
     flex-shrink: 0;
     min-width: 28px;
     text-align: center;
 }
 
 .range-current {
-    color: #0090ff;
+    color: var(--primary-color);
     font-weight: 600;
     min-width: 35px;
 }
@@ -274,7 +321,7 @@ body {
 .switch .slider {
     width: 40px;
     height: 20px;
-    background-color: #444;
+    background-color: var(--border-color);
     border-radius: 10px;
     cursor: pointer;
     position: relative;
@@ -286,7 +333,7 @@ body {
     position: absolute;
     width: 16px;
     height: 16px;
-    background-color: #888;
+    background-color: var(--text-tertiary);
     border-radius: 50%;
     top: 2px;
     left: 2px;
@@ -294,35 +341,15 @@ body {
 }
 
 .switch input:checked + .slider {
-    background-color: #007bff;
+    background-color: var(--primary-color);
 }
 
 .switch input:checked + .slider::after {
     left: 22px;
-    background-color: #fff;
+    background-color: var(--text-primary);
 }
 
-/* Button styling in menu */
-#menu button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    transition: background-color 0.2s;
-}
-
-#menu button:hover {
-    background-color: #0056b3;
-}
-
-#menu button:active {
-    background-color: #003d82;
-}
-
+/* Menu-specific button adjustments */
 .inline-button {
     padding: 6px 10px !important;
     font-size: 11px !important;
@@ -334,6 +361,11 @@ body {
     border: none;
     border-top: 1px solid #333;
     margin: 10px 0;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
 }
 
 .nothidden {
@@ -349,21 +381,21 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #888;
+    color: var(--text-tertiary);
     font-size: 12px;
     font-weight: 500;
     cursor: pointer;
     padding: 10px 6px;
     user-select: none;
-    background-color: #0d0d0d;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    border-left: 3px solid #444;
+    background-color: var(--bg-section);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    border-left: 3px solid var(--border-color);
 }
 
 .toggle-section-label:hover {
-    color: #aaa;
-    border-left-color: #007bff;
+    color: var(--text-secondary);
+    border-left-color: var(--primary-color);
     background-color: #151515;
 }
 
@@ -372,8 +404,8 @@ body {
     content: '▸';
     display: inline-block;
     font-size: 10px;
-    transition: transform 0.2s ease;
-    color: #888;
+    transition: transform var(--transition-speed) ease;
+    color: var(--text-tertiary);
 }
 
 .toggle-section-button:checked + .toggle-section-label::before {
@@ -389,8 +421,8 @@ body {
     overflow: hidden;
     flex-direction: column;
     gap: 10px;
-    background-color: #0d0d0d;
-    border-radius: 4px;
+    background-color: var(--bg-section);
+    border-radius: var(--border-radius);
     margin-top: 0;
     padding: 0 10px;
     transition: max-height 0.3s ease, margin-top 0.3s ease, padding 0.3s ease;
@@ -402,14 +434,14 @@ body {
     padding: 10px;
 }
 
-#buttons {
+#stream-control {
     display: flex;
     gap: 10px;
     flex-direction: column;
 }
 
-#buttons button {
-    width: 100%;
+#stream-control button {
+    min-width: 100px;
 }
 
 .controls {
@@ -430,24 +462,36 @@ body {
     width: 60px;
     height: 60px;
     font-size: 24px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    padding: 0;
+    border-radius: var(--border-radius);
 }
 
 .arrow-pad .empty {
     visibility: hidden;
 }
 
-.arrow-pad button:hover {
-    background-color: #0056b3;
+.vertical-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
 }
 
-.arrow-pad button:active {
-    background-color: #003d82;
+#spacer {
+    display: inline-block;
+    width: 140px;
+}
+
+.disconnected {
+    color: red;
+}
+
+.connected {
+    color: green;
+}
+
+#status-text {
+    color: var(--text-secondary);
 }
 
 /* ============== RESPONSIVE DESIGN ============== */
@@ -458,6 +502,10 @@ body {
         flex-direction: column;
         gap: 15px;
         padding: 15px;
+    }
+
+    #connection-status #spacer {
+        width: 20px;
     }
 
     .video-stream {
