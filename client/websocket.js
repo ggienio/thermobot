@@ -13,7 +13,7 @@ const commands = {
     'btn-stop': { cmd: 'MOVE', vx: 0, vy: 0, omega: 0 }
 };
 
-const ws = new WebSocket('ws://192.168.4.1/ws');
+const ws = new WebSocket('ws://192.168.4.1:82/ws');
 
 ws.onopen = () => {
     console.log('Connected to server');

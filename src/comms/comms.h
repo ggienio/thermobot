@@ -22,7 +22,7 @@ private:
 
 public:
     Comms(CommandDispatcher &dispatcher):
-        server(80), ws("/ws", wsHandler.eventHandler()), dispatcher(dispatcher) {};
+        server(82), ws("/ws", wsHandler.eventHandler()), dispatcher(dispatcher) {};
     void init();
     void loop();
 };
