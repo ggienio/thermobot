@@ -24,7 +24,7 @@ void Camera::init() {
     config.pin_pwdn = pin_pwdn;
     config.pin_reset = pin_reset;
     config.xclk_freq_hz = 8000000;
-    config.frame_size = FRAMESIZE_SVGA;
+    config.frame_size = FRAMESIZE_HVGA;
     config.pixel_format = PIXFORMAT_JPEG;    // for streaming
     //config.pixel_format = PIXFORMAT_RGB565; // for face detection/recognition
     config.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
@@ -40,6 +40,7 @@ void Camera::init() {
             config.fb_count = 2;
             config.grab_mode = CAMERA_GRAB_LATEST;
         } else {
+            Serial.println("PSRAM not found");
             // Limit the frame size when PSRAM is not available
             config.frame_size = FRAMESIZE_SVGA;
             config.fb_location = CAMERA_FB_IN_DRAM;
@@ -72,9 +73,9 @@ void Camera::init() {
         s->set_saturation(s, -2);    // lower the saturation
     }
     // drop down frame size for higher initial frame rate
-    if (config.pixel_format == PIXFORMAT_JPEG) {
-        s->set_framesize(s, FRAMESIZE_QVGA);
-    }
+    // if (config.pixel_format == PIXFORMAT_JPEG) {
+    //     s->set_framesize(s, FRAMESIZE_QVGA);
+    // }
 
 #if defined(CAMERA_MODEL_M5STACK_WIDE) || defined(CAMERA_MODEL_M5STACK_ESP32CAM)
     s->set_vflip(s, 1);
