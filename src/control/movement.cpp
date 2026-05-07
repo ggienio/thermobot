@@ -39,14 +39,14 @@ void Movement::move(float vx, float vy, float omega) {
     stopped = (vx == 0.0f && vy == 0.0f && omega == 0.0f);
     last_move_time = millis();
 
-    Serial.println("Movement executed:");
-    Serial.print("    vx: ");
-    Serial.print(vx);
-    Serial.print("    vy: ");
-    Serial.print(vy);
-    Serial.print("    omega: ");
-    Serial.print(omega);
-    Serial.println("");
+    // Serial.println("Movement executed:");
+    // Serial.print("    vx: ");
+    // Serial.print(vx);
+    // Serial.print("    vy: ");
+    // Serial.print(vy);
+    // Serial.print("    omega: ");
+    // Serial.print(omega);
+    // Serial.println("");
 }
 
 void Movement::update() {

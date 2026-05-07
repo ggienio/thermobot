@@ -60,7 +60,7 @@ void Comms::handle_ws_data(void *arg, uint8_t *data, size_t len) {
     AwsFrameInfo *info = (AwsFrameInfo*)arg;
     if (info->final && info->index == 0 && info->len == len && info->opcode == WS_TEXT) {
         data[len] = 0;
-        Serial.printf("WebSocket data received: %s\n", (const char *)data);
+        // Serial.printf("WebSocket data received: %s\n", (const char *)data);
         JsonDocument doc;
         deserializeJson(doc, (const char *)data);
         dispatcher.dispatch(doc);
