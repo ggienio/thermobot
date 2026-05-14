@@ -48,5 +48,5 @@ void setup() {
 
 void loop() {
     comms.loop();
-    movement.update();
+    movement.loop();
 }

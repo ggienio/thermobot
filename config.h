@@ -39,6 +39,9 @@ namespace Pins {
     constexpr int CAM_PIN_VSYNC = 6;
     constexpr int CAM_PIN_HREF  = 7;
     constexpr int CAM_PIN_PCLK  = 13;
+
+    // Servo
+    constexpr int SERVO_PIN = 14;
 }
 
 namespace WiFiConf {
@@ -54,6 +57,10 @@ namespace Motors {
 
 namespace MovementConf {
     constexpr unsigned long TIMEOUT_MS = 500; // timeout after which to shut down the motor if no command received
+    constexpr unsigned long UPDATE_PERIOD_MS = 20; // period with which the motors' speed is updated
+    constexpr float SMOOTHING_COEFF = 0.15; // The 'alpha' coefficient determines how fast the robot accelerates (from 0.0 to 1.0).
+                                            // 1.0 = instant acceleration (no smoothing).
+                                            // 0.15 = smooth, noticeable acceleration over a fraction of a second.
 }
 
 #endif // CONFIG_H
